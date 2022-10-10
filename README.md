@@ -1,2 +1,13 @@
-# java-explore-with-me
-Template repository for ExploreWithMe project.
+# Explore with me
+
+-----------------------
+
+**Explore with me (EWM)** — приложение, котрое предоставляет удобное RESTful API для **создания** 
+и **размещения** афиш, в которых можно предложить какое-либо событие с возможностью подачи заявлений на участие в нём.
+
+-----------------------
+
+Схемотичное представление **главной** страницы EWM:
+![](.resources/prototype-main-page.png "Application homepage prototype")
+
+-----------------------
