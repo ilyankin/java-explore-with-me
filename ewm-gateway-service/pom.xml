@@ -15,10 +15,6 @@
     <name>Explore With Me Gateway</name>
     <description>Explore With Me gateway service</description>
 
-    <properties>
-        <org.projectlombok.lombok.version>1.18.24</org.projectlombok.lombok.version>
-    </properties>
-
     <dependencies>
         <!--                      Spring Boot                      -->
         <dependency>
@@ -43,7 +39,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-            <version>${org.projectlombok.lombok.version}</version>
         </dependency>
         <!--                      Other                      -->
         <dependency>

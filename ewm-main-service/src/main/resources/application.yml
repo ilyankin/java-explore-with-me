@@ -1,0 +1,43 @@
+spring:
+  jpa:
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+    generate-ddl: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ewm-main-db
+    username: postgres
+    password: postgres
+
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8181
+  error:
+    include-message: always
+
+stat-service:
+  url: http://localhost:9090
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: TRACE
+      springframework:
+        orm:
+          jpa: DEBUG
+          jpa.JpaTransactionManager: DEBUG
+          jpa.properties.hibernate:
+
+        transaction: INFO
+        transaction.interceptor: TRACE
