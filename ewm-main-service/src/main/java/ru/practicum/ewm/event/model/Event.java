@@ -60,7 +60,7 @@ public final class Event {
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
-    @Column
+    @Transient
     private int views;
 
     @Override
