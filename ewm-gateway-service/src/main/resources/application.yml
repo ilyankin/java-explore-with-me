@@ -2,4 +2,4 @@ server:
   port: 8080
 
 ewm-server:
-  url: http://localhost:8181
+  url: ${EWM_MAIN_SERVER_URL}

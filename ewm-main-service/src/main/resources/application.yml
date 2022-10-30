@@ -7,14 +7,13 @@ spring:
         use_sql_comments: true
         format_sql: true
     hibernate:
-      ddl-auto: create-drop
-
+      ddl-auto: update
     generate-ddl: true
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/ewm-main-db
-    username: postgres
-    password: postgres
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 
   sql:
     init:
@@ -26,7 +25,7 @@ server:
     include-message: always
 
 stat-service:
-  url: http://localhost:9090
+  url: ${EWM_STATS_SERVER_URL}
 
 logging:
   level:
@@ -38,6 +37,5 @@ logging:
           jpa: DEBUG
           jpa.JpaTransactionManager: DEBUG
           jpa.properties.hibernate:
-
         transaction: INFO
         transaction.interceptor: TRACE
