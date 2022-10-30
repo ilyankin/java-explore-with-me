@@ -25,7 +25,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class StatsClient {
-    private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private final RestTemplate rest;
 
 
@@ -53,8 +53,8 @@ public class StatsClient {
 
     public long getEventViews(long eventId) {
         val viewStats = (List<LinkedHashMap>) getStatistics(
-                LocalDateTime.now().minusYears(10).format(FORMATTER),
-                LocalDateTime.now().plusYears(10).format(FORMATTER),
+                LocalDateTime.now().minusYears(10).format(formatter),
+                LocalDateTime.now().plusYears(10).format(formatter),
                 eventId, false).getBody();
 
         if (viewStats == null || viewStats.isEmpty()) return 0;
