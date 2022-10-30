@@ -23,8 +23,7 @@ public final class UrlUtil {
                 localDateTimes.add(null);
                 continue;
             }
-            localDateTimes.add(LocalDateTime.from
-                    (formatter.parse(URLDecoder.decode(encodeTime, charset))));
+            localDateTimes.add(LocalDateTime.from(formatter.parse(URLDecoder.decode(encodeTime, charset))));
         }
         return localDateTimes;
     }
