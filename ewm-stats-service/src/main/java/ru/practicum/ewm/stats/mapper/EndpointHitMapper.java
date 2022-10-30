@@ -9,5 +9,6 @@ import ru.practicum.ewm.stats.model.dto.EndpointHitDto;
 public interface EndpointHitMapper {
     @Mapping(target = "id", ignore = true)
     EndpointHit to(EndpointHitDto endpointHitDto);
+
     EndpointHitDto toDto(EndpointHit endpointHit);
 }

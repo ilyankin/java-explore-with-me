@@ -6,9 +6,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.practicum.ewm.user.dto.NewUserDto;
 import ru.practicum.ewm.user.dto.UserDto;
+import ru.practicum.ewm.user.getter.UserGetter;
 import ru.practicum.ewm.user.mapper.UserMapper;
 import ru.practicum.ewm.user.repository.UserRepository;
-import ru.practicum.ewm.user.getter.UserGetter;
 
 import java.util.Collection;
 

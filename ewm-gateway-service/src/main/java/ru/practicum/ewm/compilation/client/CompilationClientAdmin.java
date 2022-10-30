@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
-import ru.practicum.ewm.compilation.dto.NewCompilationDto;
 import ru.practicum.ewm.BaseClient;
+import ru.practicum.ewm.compilation.dto.NewCompilationDto;
 
 @Service
 public class CompilationClientAdmin extends BaseClient {

@@ -37,6 +37,16 @@ public class StatsClient {
                 .build();
     }
 
+    private static ResponseEntity<Object> prepareGatewayResponse(ResponseEntity<Object> response) {
+        if (response.getStatusCode().is2xxSuccessful()) return response;
+
+        val responseBuilder = ResponseEntity.status(response.getStatusCode());
+
+        if (response.hasBody()) return responseBuilder.body(response.getBody());
+
+        return responseBuilder.build();
+    }
+
     public void createStatistics(EndpointHitDto endpointHitDto) {
         makeAndSendRequest(HttpMethod.POST, "/hit", null, endpointHitDto);
     }
@@ -87,15 +97,5 @@ public class StatsClient {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         return headers;
-    }
-
-    private static ResponseEntity<Object> prepareGatewayResponse(ResponseEntity<Object> response) {
-        if (response.getStatusCode().is2xxSuccessful()) return response;
-
-        val responseBuilder = ResponseEntity.status(response.getStatusCode());
-
-        if (response.hasBody()) return responseBuilder.body(response.getBody());
-
-        return responseBuilder.build();
     }
 }

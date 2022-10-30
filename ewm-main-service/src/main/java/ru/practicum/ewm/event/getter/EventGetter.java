@@ -14,6 +14,7 @@ import ru.practicum.ewm.other.getter.ThrownGettable;
 @RequiredArgsConstructor
 public class EventGetter implements ThrownGettable<Event, Long> {
     private final EventRepository eventRepository;
+
     @Override
     public Event getOrThrow(Long eventId) {
         val event = eventRepository.findById(eventId);

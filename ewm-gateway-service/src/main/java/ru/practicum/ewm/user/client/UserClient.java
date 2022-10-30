@@ -7,11 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
-import ru.practicum.ewm.user.dto.NewUserRequest;
 import ru.practicum.ewm.BaseClient;
+import ru.practicum.ewm.user.dto.NewUserRequest;
 import ru.practicum.ewm.util.UrlUtil;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 

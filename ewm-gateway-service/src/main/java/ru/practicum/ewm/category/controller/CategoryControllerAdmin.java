@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.ewm.category.client.CategoryClientAdmin;
 import ru.practicum.ewm.category.dto.CategoryDto;
 import ru.practicum.ewm.category.dto.NewCategoryDto;
-import ru.practicum.ewm.category.client.CategoryClientAdmin;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;

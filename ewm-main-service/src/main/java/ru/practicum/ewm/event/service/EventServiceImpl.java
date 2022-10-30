@@ -51,6 +51,12 @@ public class EventServiceImpl implements EventService {
 
     private final StatsClient statsClient;
 
+    private static void verifyInitiator(long userId, Event event) {
+        if (userId != event.getInitiator().getId())
+            throw new ConditionsAreNotMetException("The user id=" + userId
+                    + " isn't initiator of the event id=" + event.getId());
+    }
+
     @Override
     public Collection<EventFullDto> getAllEventsByAdminParams(AdminEventFilterParams params) {
         val conditions = new BooleanBuilder();
@@ -216,7 +222,7 @@ public class EventServiceImpl implements EventService {
         val events = eventRepository.findAll(conditions.getValue(), page).getContent();
         for (Event event : events) {
             sendStatistics(new RequestMetaData(
-                    requestMetaData.getRemoteAddress(), requestMetaData.getRequestURI() + "/"  + event.getId()));
+                    requestMetaData.getRemoteAddress(), requestMetaData.getRequestURI() + "/" + event.getId()));
         }
         return eventMapper.toShortDto(events);
     }
@@ -227,7 +233,6 @@ public class EventServiceImpl implements EventService {
         sendStatistics(requestMetaData);
         return eventMapper.toDto(event);
     }
-
 
     @Override
     public Collection<ParticipationRequestDto> getAllParticipationRequests(long userId, long eventId) {
@@ -303,11 +308,5 @@ public class EventServiceImpl implements EventService {
             default:
                 throw new IllegalArgumentException("Unknown sort type: " + sortType);
         }
-    }
-
-    private static void verifyInitiator(long userId, Event event) {
-        if (userId != event.getInitiator().getId())
-            throw new ConditionsAreNotMetException("The user id=" + userId
-                    + " isn't initiator of the event id=" + event.getId());
     }
 }

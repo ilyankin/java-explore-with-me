@@ -9,8 +9,6 @@ import ru.practicum.ewm.event.controller.params.SortType;
 import ru.practicum.ewm.event.model.dto.EventFullDto;
 import ru.practicum.ewm.event.model.dto.EventShortDto;
 import ru.practicum.ewm.event.service.EventServicePublic;
-import ru.practicum.ewm.stats.StatsClient;
-import ru.practicum.ewm.stats.dto.EndpointHitDto;
 import ru.practicum.ewm.util.UrlUtil;
 
 import java.net.URLDecoder;
@@ -24,7 +22,6 @@ import java.util.Collection;
 public class EventControllerPublic {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private final EventServicePublic eventService;
-
 
 
     @GetMapping

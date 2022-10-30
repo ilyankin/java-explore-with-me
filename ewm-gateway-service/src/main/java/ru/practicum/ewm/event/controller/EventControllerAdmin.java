@@ -5,12 +5,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.ewm.event.dto.AdminUpdateEventRequest;
 import ru.practicum.ewm.event.client.EventClientAdmin;
+import ru.practicum.ewm.event.dto.AdminUpdateEventRequest;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
-import java.util.List;
 import java.util.Set;
 
 @Validated

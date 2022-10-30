@@ -4,7 +4,6 @@ import ru.practicum.ewm.user.dto.NewUserDto;
 import ru.practicum.ewm.user.dto.UserDto;
 
 import java.util.Collection;
-import java.util.List;
 
 
 public interface UserService {

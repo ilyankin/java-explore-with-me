@@ -29,12 +29,15 @@ public abstract class EventMapper {
     @Mapping(target = "confirmedRequests", expression = "java(event.getConfirmedRequests().size())")
     @Mapping(target = "views", expression = "java(statsClient.getEventViews(event.getId()))")
     public abstract EventFullDto toDto(Event event);
+
     public abstract Collection<EventFullDto> toDto(Collection<Event> events);
+
     @Mapping(source = "initiator.id", target = "initiator.id")
     @Mapping(source = "initiator.name", target = "initiator.name")
     @Mapping(target = "confirmedRequests", expression = "java(event.getConfirmedRequests().size())")
     @Mapping(target = "views", expression = "java(statsClient.getEventViews(event.getId()))")
     public abstract EventShortDto toShortDto(Event event);
+
     public abstract Collection<EventShortDto> toShortDto(Collection<Event> events);
 
     @Mapping(target = "views", ignore = true)
@@ -71,5 +74,5 @@ public abstract class EventMapper {
     @Mapping(target = "category", source = "category")
     @Mapping(target = "location", source = "location")
     public abstract Event create(@MappingTarget Event event, NewEventDto eventDto, User user, Category category,
-                              Location location);
+                                 Location location);
 }

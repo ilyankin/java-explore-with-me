@@ -10,9 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.function.Predicate;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class UrlUtil {

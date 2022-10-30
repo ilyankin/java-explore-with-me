@@ -12,8 +12,11 @@ import java.util.Collection;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     UserDto toDto(User user);
+
     Collection<UserDto> toDto(Collection<User> users);
+
     User to(UserDto userDto);
+
     @Mapping(target = "id", ignore = true)
     User to(NewUserDto userDto);
 }

@@ -6,9 +6,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.practicum.ewm.category.dto.CategoryDto;
 import ru.practicum.ewm.category.dto.CategoryNewDto;
+import ru.practicum.ewm.category.getter.CategoryGetter;
 import ru.practicum.ewm.category.mapper.CategoryMapper;
 import ru.practicum.ewm.category.reopository.CategoryRepository;
-import ru.practicum.ewm.category.getter.CategoryGetter;
 
 import java.util.Collection;
 

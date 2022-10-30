@@ -10,6 +10,7 @@ import ru.practicum.ewm.event.mapper.EventMapper;
 import ru.practicum.ewm.event.repository.EventRepository;
 
 import java.util.Collection;
+
 @Mapper(componentModel = "spring", uses = {EventMapper.class})
 public abstract class CompilationMapper {
     @Autowired

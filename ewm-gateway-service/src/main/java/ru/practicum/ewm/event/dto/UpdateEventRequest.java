@@ -10,7 +10,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import ru.practicum.ewm.constraint.NullOrNotBlank;
 
 import javax.validation.constraints.Future;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;

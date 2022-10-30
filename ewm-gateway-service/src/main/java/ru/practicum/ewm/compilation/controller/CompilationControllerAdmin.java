@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.ewm.compilation.dto.NewCompilationDto;
 import ru.practicum.ewm.compilation.client.CompilationClientAdmin;
+import ru.practicum.ewm.compilation.dto.NewCompilationDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;

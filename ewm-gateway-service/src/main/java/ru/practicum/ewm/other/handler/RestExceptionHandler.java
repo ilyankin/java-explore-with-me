@@ -15,7 +15,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.server.MediaTypeNotSupportedStatusException;
 
 import java.rmi.server.ServerNotActiveException;
 import java.time.LocalDateTime;
@@ -79,6 +78,10 @@ public class RestExceptionHandler {
                 .build();
     }
 
+    private interface BindingError {
+
+    }
+
     @Value
     @Builder
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -117,10 +120,6 @@ public class RestExceptionHandler {
         public void addValidationError(List<ObjectError> globalErrors) {
             globalErrors.forEach(this::addValidationError);
         }
-    }
-
-    private interface BindingError {
-
     }
 
     @Value

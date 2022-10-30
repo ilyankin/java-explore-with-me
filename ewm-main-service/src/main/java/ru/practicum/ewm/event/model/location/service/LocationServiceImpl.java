@@ -3,10 +3,10 @@ package ru.practicum.ewm.event.model.location.service;
 import lombok.AllArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
-import ru.practicum.ewm.event.model.location.mapper.LocationMapper;
-import ru.practicum.ewm.event.model.location.repository.LocationRepository;
 import ru.practicum.ewm.event.model.location.dto.LocationDto;
+import ru.practicum.ewm.event.model.location.mapper.LocationMapper;
 import ru.practicum.ewm.event.model.location.model.Location;
+import ru.practicum.ewm.event.model.location.repository.LocationRepository;
 import ru.practicum.ewm.other.exception.EntityNotFoundException;
 
 @Service

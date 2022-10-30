@@ -11,9 +11,11 @@ import java.util.Collection;
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
     CategoryDto toDto(Category category);
+
     Collection<CategoryDto> toDto(Collection<Category> category);
 
     Category to(CategoryDto categoryDto);
+
     @Mapping(target = "id", ignore = true)
     Category to(CategoryNewDto categoryNewDto);
 }

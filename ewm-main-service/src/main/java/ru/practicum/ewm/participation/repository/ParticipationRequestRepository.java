@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ru.practicum.ewm.participation.model.ParticipationRequest;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.Set;
 
 public interface ParticipationRequestRepository extends JpaRepository<ParticipationRequest, Long> {

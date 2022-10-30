@@ -2,11 +2,8 @@ package ru.practicum.ewm.participation.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import ru.practicum.ewm.event.model.Event;
 import ru.practicum.ewm.participation.dto.ParticipationRequestDto;
 import ru.practicum.ewm.participation.model.ParticipationRequest;
-import ru.practicum.ewm.user.model.User;
 
 import java.util.Collection;
 
