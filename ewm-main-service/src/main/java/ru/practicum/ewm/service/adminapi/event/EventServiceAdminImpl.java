@@ -59,7 +59,7 @@ public class EventServiceAdminImpl implements EventServiceAdmin {
     }
 
     @Override
-    public EventFullDto adminUpdateEvent(long eventId, AdminUpdateEventRequest eventUpdateDto) {
+    public EventFullDto updateEvent(long eventId, AdminUpdateEventRequest eventUpdateDto) {
         val event = eventMapper.update(eventGetter.getOrThrow(eventId), eventUpdateDto);
         return eventMapper.toDto(eventRepository.save(event));
     }

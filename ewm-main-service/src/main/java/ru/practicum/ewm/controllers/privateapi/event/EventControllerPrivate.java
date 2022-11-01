@@ -19,28 +19,28 @@ public class EventControllerPrivate {
 
     @GetMapping
     public Collection<EventFullDto> getAll(@PathVariable long userId, @RequestParam int from, @RequestParam int size) {
-        return eventService.privateGetAllEvents(userId, from, size);
+        return eventService.getAllEvents(userId, from, size);
     }
 
     @GetMapping("{eventId}")
     public EventFullDto get(@PathVariable @Positive Long userId,
                             @PathVariable @Positive Long eventId) {
-        return eventService.privateGetEvent(userId, eventId);
+        return eventService.getEvent(userId, eventId);
     }
 
     @PatchMapping
     public EventFullDto update(@PathVariable long userId, @RequestBody UpdateEventRequest updateEventDto) {
-        return eventService.privateUpdateEvent(userId, updateEventDto);
+        return eventService.updateEvent(userId, updateEventDto);
     }
 
     @PostMapping
     public EventFullDto create(@PathVariable long userId, @RequestBody NewEventDto eventDto) {
-        return eventService.privateCreateEvent(userId, eventDto);
+        return eventService.createEvent(userId, eventDto);
     }
 
     @PatchMapping("{eventId}")
     public EventFullDto cancel(@PathVariable long userId, @PathVariable long eventId) {
-        return eventService.privateCancelEvent(userId, eventId);
+        return eventService.cancelEvent(userId, eventId);
     }
 
     @GetMapping("{eventId}/requests")

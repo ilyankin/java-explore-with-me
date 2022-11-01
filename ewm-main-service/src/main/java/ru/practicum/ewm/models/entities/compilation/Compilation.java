@@ -7,6 +7,11 @@ import ru.practicum.ewm.models.entities.event.Event;
 import javax.persistence.*;
 import java.util.Collection;
 
+/**
+ * The entity representing a compilation of events
+ *
+ * @author Izenkyt
+ */
 @Getter
 @Setter
 @ToString

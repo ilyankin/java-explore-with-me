@@ -32,14 +32,14 @@ public class EventServicePublicImpl implements EventServicePublic {
     private final StatsClient statsClient;
 
     @Override
-    public Collection<EventShortDto> getAllEventsByPublicParams(PublicEventFilterParams params,
+    public Collection<EventShortDto> getAllEventsByPublicParams(PublicEventFilterParams publicEventFilterParams,
                                                                 RequestMetaData requestMetaData) {
 
         val conditions = new BooleanBuilder();
 
         conditions.and(QEvent.event.state.eq(EventState.PUBLISHED));
 
-        val text = params.getText();
+        val text = publicEventFilterParams.getText();
         if (text != null) {
             conditions.andAnyOf(
                     QEvent.event.annotation.likeIgnoreCase("%" + text + "%"),
@@ -47,31 +47,31 @@ public class EventServicePublicImpl implements EventServicePublic {
             );
         }
 
-        val categories = params.getCategoryIds();
+        val categories = publicEventFilterParams.getCategoryIds();
         if (categories != null && categories.length != 0) {
             conditions.and(QEvent.event.category.id.in(categories));
         }
 
-        val paid = params.getPaid();
+        val paid = publicEventFilterParams.getPaid();
         if (paid != null) {
             conditions.and(QEvent.event.paid.eq(paid));
         }
 
-        val rangeStart = params.getRangeStart();
+        val rangeStart = publicEventFilterParams.getRangeStart();
         conditions.and(QEvent.event.eventDate.after(Objects.requireNonNullElseGet(rangeStart, LocalDateTime::now)));
 
-        val rangeEnd = params.getRangeEnd();
+        val rangeEnd = publicEventFilterParams.getRangeEnd();
         if (rangeEnd != null) {
             conditions.and(QEvent.event.eventDate.before(rangeEnd));
         }
 
-        val onlyAvailable = params.isOnlyAvailable();
+        val onlyAvailable = publicEventFilterParams.isOnlyAvailable();
         if (onlyAvailable) {
             conditions.and(QEvent.event.participantLimit.lt(QEvent.event.confirmedRequests.size()));
         }
 
-        val size = params.getSize();
-        val page = PageRequest.of(params.getFrom() / size, size, toSort(params.getSortType()));
+        val size = publicEventFilterParams.getSize();
+        val page = PageRequest.of(publicEventFilterParams.getFrom() / size, size, toSort(publicEventFilterParams.getSortType()));
         val events = eventRepository.findAll(conditions.getValue(), page).getContent();
         for (Event event : events) {
             sendStatistics(new RequestMetaData(

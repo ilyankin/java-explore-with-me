@@ -50,13 +50,13 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
     }
 
     @Override
-    public Collection<EventFullDto> privateGetAllEvents(long userId, int from, int size) {
+    public Collection<EventFullDto> getAllEvents(long userId, int from, int size) {
         val page = PageRequest.of(from / size, size, toSort(SortType.EVENT_DATE));
         return eventMapper.toDto(eventRepository.findAll(QEvent.event.initiator.id.eq(userId), page).getContent());
     }
 
     @Override
-    public EventFullDto privateGetEvent(long userId, long eventId) {
+    public EventFullDto getEvent(long userId, long eventId) {
         val event = eventGetter.getOrThrow(eventId);
 
         verifyInitiator(userId, event);
@@ -65,7 +65,7 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
     }
 
     @Override
-    public EventFullDto privateUpdateEvent(long userId, UpdateEventRequest eventUpdateDto) {
+    public EventFullDto updateEvent(long userId, UpdateEventRequest eventUpdateDto) {
         userGetter.getOrThrow(userId);
 
         val event = eventGetter.getOrThrow(eventUpdateDto.getEventId());
@@ -81,7 +81,7 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
     }
 
     @Override
-    public EventFullDto privateCreateEvent(long userId, NewEventDto eventDto) {
+    public EventFullDto createEvent(long userId, NewEventDto eventDto) {
         val user = userGetter.getOrThrow(userId);
         val category = categoryGetter.getOrThrow(eventDto.getCategoryId());
         val location = locationRepository.save(locationMapper.to(eventDto.getLocation()));
@@ -90,7 +90,7 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
     }
 
     @Override
-    public EventFullDto privateCancelEvent(long userId, long eventId) {
+    public EventFullDto cancelEvent(long userId, long eventId) {
         val event = eventGetter.getOrThrow(eventId);
 
         if (!event.getState().isPending())

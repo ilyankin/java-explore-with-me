@@ -1,5 +1,10 @@
 package ru.practicum.ewm.models.entities.event;
 
+/**
+ * The entity representing a state of event
+ *
+ * @author Izenkyt
+ */
 public enum EventState {
     PENDING,
     PUBLISHED,

@@ -7,8 +7,29 @@ import ru.practicum.ewm.models.dtos.event.EventShortDto;
 
 import java.util.Collection;
 
+/**
+ * The service contains methods for implementing the event's public API of the application.
+ *
+ * @author Izenkyt
+ */
 public interface EventServicePublic {
-    Collection<EventShortDto> getAllEventsByPublicParams(PublicEventFilterParams params, RequestMetaData requestMetaData);
 
+    /**
+     * Gets collection of events.
+     *
+     * @param publicEventFilterParams - set of possible filtering parameters for all
+     * @param requestMetaData         - request metadata for collecting statistics like a user ip and its requested endpoint
+     * @return collection of {@link EventShortDto} - short event dto
+     */
+    Collection<EventShortDto> getAllEventsByPublicParams(PublicEventFilterParams publicEventFilterParams,
+                                                         RequestMetaData requestMetaData);
+
+    /**
+     * Get event.
+     *
+     * @param eventId         - event identifier
+     * @param requestMetaData - request metadata for collecting statistics like a user ip and its requested endpoint
+     * @return {@link EventShortDto} - short event dto
+     */
     EventFullDto getEvent(long eventId, RequestMetaData requestMetaData);
 }

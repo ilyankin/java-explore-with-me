@@ -1,5 +1,10 @@
 package ru.practicum.ewm.models.entities.participation;
 
+/**
+ * The entity representing status of  participation
+ *
+ * @author Izenkyt
+ */
 public enum PRStatus {
     PENDING,
     CONFIRMED,

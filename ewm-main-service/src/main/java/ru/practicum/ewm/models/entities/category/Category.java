@@ -8,6 +8,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * The entity representing a category
+ *
+ * @author Izenkyt
+ */
 @Getter
 @Setter
 @NoArgsConstructor

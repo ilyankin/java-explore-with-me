@@ -8,7 +8,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Objects;
 
-
+/**
+ * The entity representing a location of event
+ *
+ * @author Izenkyt
+ */
 @Getter
 @Setter
 @NoArgsConstructor

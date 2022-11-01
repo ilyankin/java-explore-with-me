@@ -11,6 +11,11 @@ import ru.practicum.ewm.models.entities.user.User;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * The entity representing participation request to event
+ *
+ * @author Izenkyt
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -37,7 +42,6 @@ public final class ParticipationRequest {
     private User requester;
 
     @Enumerated(EnumType.STRING)
-    // @Type(type = "pr_status_psql_enum")
     private PRStatus status = PRStatus.PENDING;
 
     @Override

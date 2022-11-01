@@ -18,6 +18,11 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The entity representing an event
+ *
+ * @author Izenkyt
+ */
 @Getter
 @Setter
 @NoArgsConstructor
