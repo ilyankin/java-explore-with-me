@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 /**
  * This class contains a list of filtering parameters for that are used when searching for event using admin API.
  *
+ * @see ru.practicum.ewm.models.entities.event.Event
  * @author Izenkyt
  */
 @Value
