@@ -60,7 +60,6 @@ public final class Event {
     @Where(clause = "status = 'CONFIRMED'")
     private Set<ParticipationRequest> confirmedRequests = new HashSet<>();
     @Enumerated(EnumType.STRING)
-    // @Type(type = "event_state_psql_enum")
     private EventState state = EventState.PENDING;
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
