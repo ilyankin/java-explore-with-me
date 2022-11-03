@@ -6,6 +6,11 @@ import ru.practicum.ewm.models.dtos.compilation.CompilationDto;
 import ru.practicum.ewm.models.dtos.compilation.NewCompilationDto;
 import ru.practicum.ewm.service.adminapi.compilation.CompilationServiceAdminImpl;
 
+/**
+ * The controller processes requests from compilation's admin API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/compilations")

@@ -6,9 +6,19 @@ package ru.practicum.ewm.models.entities.event;
  * @author Izenkyt
  */
 public enum EventState {
-    PENDING,
-    PUBLISHED,
-    CANCELED;
+    PENDING("pending"),
+    PUBLISHED("published"),
+    CANCELED("canceled");
+
+    private final String string;
+
+    EventState(String string) {
+        this.string = string;
+    }
+
+    public String getString() {
+        return string;
+    }
 
     public boolean isPending() {
         return this == PENDING;

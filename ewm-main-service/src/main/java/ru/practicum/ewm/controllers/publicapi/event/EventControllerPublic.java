@@ -16,6 +16,11 @@ import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
+/**
+ * The controller processes requests from event's public API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/events")
@@ -52,5 +57,4 @@ public class EventControllerPublic {
                             @RequestHeader("X-Remote-Address") String remoteAddress) {
         return eventService.getEvent(eventId, new RequestMetaData(remoteAddress, requestURI));
     }
-
 }

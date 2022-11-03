@@ -6,6 +6,11 @@ import ru.practicum.ewm.models.dtos.category.CategoryDto;
 import ru.practicum.ewm.models.dtos.category.CategoryNewDto;
 import ru.practicum.ewm.service.adminapi.category.CategoryServiceAdmin;
 
+/**
+ * The controller processes requests from category's admin API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin")

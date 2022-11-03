@@ -14,7 +14,7 @@ import java.util.Collection;
 public interface EventServicePrivate {
 
     /**
-     * Gets collection of events by the initiator (event participant).
+     * Gets a collection of events by the initiator (event participant).
      *
      * @param userId - initiator identifier
      * @param from   - number of events that need to be skipped to form the returned collection of events

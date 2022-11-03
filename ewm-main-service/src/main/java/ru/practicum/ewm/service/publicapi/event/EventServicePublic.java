@@ -15,8 +15,9 @@ import java.util.Collection;
 public interface EventServicePublic {
 
     /**
-     * Gets collection of events.
+     * Gets a collection of events by public filter params.
      *
+     * @see PublicEventFilterParams
      * @param publicEventFilterParams - set of possible filtering parameters for all
      * @param requestMetaData         - request metadata for collecting statistics like a user ip and its requested endpoint
      * @return collection of {@link EventShortDto} - short event dto
@@ -25,7 +26,7 @@ public interface EventServicePublic {
                                                          RequestMetaData requestMetaData);
 
     /**
-     * Get event.
+     * Gets an event.
      *
      * @param eventId         - event identifier
      * @param requestMetaData - request metadata for collecting statistics like a user ip and its requested endpoint

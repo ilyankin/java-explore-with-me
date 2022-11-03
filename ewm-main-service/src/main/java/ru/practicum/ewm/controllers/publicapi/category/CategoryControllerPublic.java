@@ -8,6 +8,11 @@ import ru.practicum.ewm.service.publicapi.category.CategoryServicePublic;
 
 import java.util.Collection;
 
+/**
+ * The controller processes requests from category's public API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/categories")

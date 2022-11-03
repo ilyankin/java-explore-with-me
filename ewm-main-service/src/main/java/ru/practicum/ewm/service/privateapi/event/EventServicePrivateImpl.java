@@ -5,9 +5,10 @@ import lombok.val;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.practicum.ewm.controllers.publicapi.event.params.SortType;
-import ru.practicum.ewm.event.model.QEvent;
-import ru.practicum.ewm.exceptions.ConditionsAreNotMetException;
+import ru.practicum.ewm.exceptions.event.EventInvalidStateException;
+import ru.practicum.ewm.exceptions.event.EventNotOnlyByInitiatorException;
+import ru.practicum.ewm.exceptions.participation.ParticipationRequestInvalidStatusException;
+import ru.practicum.ewm.exceptions.participation.ParticipationRequestLimitReachedException;
 import ru.practicum.ewm.getters.category.CategoryGetter;
 import ru.practicum.ewm.getters.event.EventGetter;
 import ru.practicum.ewm.getters.participation.ParticipationRequestGetter;
@@ -21,6 +22,7 @@ import ru.practicum.ewm.models.dtos.event.UpdateEventRequest;
 import ru.practicum.ewm.models.dtos.participation.ParticipationRequestDto;
 import ru.practicum.ewm.models.entities.event.Event;
 import ru.practicum.ewm.models.entities.event.EventState;
+import ru.practicum.ewm.models.entities.event.QEvent;
 import ru.practicum.ewm.models.entities.participation.PRStatus;
 import ru.practicum.ewm.repositories.event.EventRepository;
 import ru.practicum.ewm.repositories.event.location.LocationRepository;
@@ -43,15 +45,9 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
     private final LocationMapper locationMapper;
     private final ParticipationRequestMapper prMapper;
 
-    private static void verifyInitiator(long userId, Event event) {
-        if (userId != event.getInitiator().getId())
-            throw new ConditionsAreNotMetException("The user id=" + userId
-                    + " isn't initiator of the event id=" + event.getId());
-    }
-
     @Override
     public Collection<EventFullDto> getAllEvents(long userId, int from, int size) {
-        val page = PageRequest.of(from / size, size, toSort(SortType.EVENT_DATE));
+        val page = PageRequest.of(from / size, size, Sort.by("eventDate").descending());
         return eventMapper.toDto(eventRepository.findAll(QEvent.event.initiator.id.eq(userId), page).getContent());
     }
 
@@ -72,7 +68,7 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
         val state = event.getState();
 
         if (state.isPublished())
-            throw new ConditionsAreNotMetException("The event with id=" + event.getId() + " has already been published.");
+            throw new EventInvalidStateException("update", state);
 
         if (state.isCanceled())
             event.setState(EventState.PENDING);
@@ -92,11 +88,15 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
     @Override
     public EventFullDto cancelEvent(long userId, long eventId) {
         val event = eventGetter.getOrThrow(eventId);
-
-        if (!event.getState().isPending())
-            throw new ConditionsAreNotMetException("The event id=" + eventId + " already published or canceled");
+        val state = event.getState();
 
         verifyInitiator(userId, event);
+
+        if (state.isPublished())
+            throw new EventInvalidStateException("cancel", state);
+
+        if (state.isCanceled())
+            throw new EventInvalidStateException("cancel", state);
 
         event.setState(EventState.CANCELED);
         return eventMapper.toDto(event);
@@ -117,16 +117,15 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
         val request = prGetter.getOrThrow(reqId);
         val event = eventGetter.getOrThrow(eventId);
 
-        if (request.getStatus().isConfirmed()) {
-            throw new ConditionsAreNotMetException("The participant request id=" + reqId
-                    + " has been already confirmed");
-        }
-
         verifyInitiator(userId, event);
+
+        val status = request.getStatus();
+        if (status.isConfirmed())
+            throw new ParticipationRequestInvalidStatusException("confirm", status);
 
         val participantLimit = event.getParticipantLimit();
         if (participantLimit != 0 && participantLimit == event.getConfirmedRequests().size()) {
-            throw new ConditionsAreNotMetException("Participant limit is full");
+            throw new ParticipationRequestLimitReachedException();
         }
 
         request.setStatus(PRStatus.CONFIRMED);
@@ -148,26 +147,19 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
         val request = prGetter.getOrThrow(reqId);
         val event = eventGetter.getOrThrow(eventId);
 
-        if (request.getStatus().isRejected()) {
-            throw new ConditionsAreNotMetException("The participant request id=" + reqId
-                    + " has been already rejected");
-        }
-
         verifyInitiator(userId, event);
+
+        val status = request.getStatus();
+        if (status.isRejected())
+            throw new ParticipationRequestInvalidStatusException("rejected", status);
 
         request.setStatus(PRStatus.REJECTED);
 
         return prMapper.toDto(prRepository.save(request));
     }
 
-    private Sort toSort(SortType sortType) {
-        switch (sortType) {
-            case EVENT_DATE:
-                return Sort.by("eventDate").descending();
-            case VIEWS:
-                return Sort.by("views").descending();
-            default:
-                throw new IllegalArgumentException("Unknown sort type: " + sortType);
-        }
+    private static void verifyInitiator(long userId, Event event) {
+        if (userId != event.getInitiator().getId())
+            throw new EventNotOnlyByInitiatorException(userId, event.getId());
     }
 }

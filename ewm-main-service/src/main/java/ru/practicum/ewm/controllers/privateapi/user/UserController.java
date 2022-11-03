@@ -8,7 +8,11 @@ import ru.practicum.ewm.service.privateapi.user.UserService;
 
 import java.util.Collection;
 
-
+/**
+ * The controller processes requests from user's private API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/users")

@@ -11,7 +11,7 @@ import java.util.Collection;
  */
 public interface CategoryServicePublic {
     /**
-     * Gets category.
+     * Gets a category.
      *
      * @param categoryId - category identifier
      * @return {@link CategoryDto} - direct category dto
@@ -19,7 +19,7 @@ public interface CategoryServicePublic {
     CategoryDto getCategory(long categoryId);
 
     /**
-     * Gets collection of categories.
+     * Gets a collection of categories.
      *
      * @param from - number of categories that need to be skipped to form the returned collection of categories
      * @param size - number of categories in the returned collection of categories

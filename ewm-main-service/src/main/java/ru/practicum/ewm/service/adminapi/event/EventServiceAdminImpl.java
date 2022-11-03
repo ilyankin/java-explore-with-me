@@ -6,13 +6,15 @@ import lombok.val;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.practicum.ewm.controllers.adminapi.event.params.AdminEventFilterParams;
-import ru.practicum.ewm.event.model.QEvent;
-import ru.practicum.ewm.exceptions.ConditionsAreNotMetException;
+import ru.practicum.ewm.exceptions.event.EventDateAfterPublicationDateException;
+import ru.practicum.ewm.exceptions.event.EventInvalidStateException;
+import ru.practicum.ewm.exceptions.event.EventTryRejectPublishedEventException;
 import ru.practicum.ewm.getters.event.EventGetter;
 import ru.practicum.ewm.mappers.event.EventMapper;
 import ru.practicum.ewm.models.dtos.event.AdminUpdateEventRequest;
 import ru.practicum.ewm.models.dtos.event.EventFullDto;
 import ru.practicum.ewm.models.entities.event.EventState;
+import ru.practicum.ewm.models.entities.event.QEvent;
 import ru.practicum.ewm.repositories.event.EventRepository;
 
 import java.time.LocalDateTime;
@@ -69,14 +71,14 @@ public class EventServiceAdminImpl implements EventServiceAdmin {
         val event = eventGetter.getOrThrow(eventId);
 
         val state = event.getState();
-        if (state.isPublished())
-            throw new ConditionsAreNotMetException("The event with id=" + eventId + " has already been published.");
 
         if (!state.isPending())
-            throw new ConditionsAreNotMetException("Only pending events can be published.");
+            throw new EventInvalidStateException("publish", state);
 
-        if (event.getEventDate().isBefore(LocalDateTime.now().plusHours(1)))
-            throw new ConditionsAreNotMetException("The event date must be no earlier than one hour from the publication.");
+        val hours = 1;
+        val minutes = 0;
+        if (event.getEventDate().isBefore(LocalDateTime.now().plusHours(hours)))
+            throw new EventDateAfterPublicationDateException(hours, minutes);
 
         event.setPublishedOn(LocalDateTime.now());
         event.setState(EventState.PUBLISHED);
@@ -88,7 +90,7 @@ public class EventServiceAdminImpl implements EventServiceAdmin {
         val event = eventGetter.getOrThrow(eventId);
 
         if (event.getState().isPublished())
-            throw new ConditionsAreNotMetException("The event should not be published.");
+            throw new EventTryRejectPublishedEventException();
 
         event.setState(EventState.CANCELED);
         return eventMapper.toDto(eventRepository.save(event));

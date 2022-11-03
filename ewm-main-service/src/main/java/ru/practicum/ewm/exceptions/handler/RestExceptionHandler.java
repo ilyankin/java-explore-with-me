@@ -19,10 +19,10 @@ public class RestExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
-    protected ApiError handleEntityNotFoundException(final Exception e) {
+    protected ApiError handleEntityNotFoundException(final EntityNotFoundException e) {
         return ApiError.builder()
                 .message(e.getMessage())
-                .reason("The required object was not found.")
+                .reason(e.getReason())
                 .status(HttpStatus.NOT_FOUND.name())
                 .build();
     }
@@ -39,10 +39,10 @@ public class RestExceptionHandler {
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(ConditionsAreNotMetException.class)
-    protected ApiError handleConditionsNotMetException(final Exception e) {
+    protected ApiError handleConditionsNotMetException(final ConditionsAreNotMetException e) {
         return ApiError.builder()
                 .message(e.getMessage())
-                .reason("For the requested operation the conditions are not met.")
+                .reason(e.getReason())
                 .status(HttpStatus.FORBIDDEN.name())
                 .build();
     }

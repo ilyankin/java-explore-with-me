@@ -8,6 +8,11 @@ import ru.practicum.ewm.service.privateapi.participation.ParticipationRequestSer
 
 import java.util.Collection;
 
+/**
+ * The controller processes requests from participation request's private API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/users/{userId}")

@@ -14,8 +14,9 @@ import java.util.Collection;
 public interface EventServiceAdmin {
 
     /**
-     * Gets collection of events by admin.
+     * Gets a collection of events by admin filter params.
      *
+     * @see AdminEventFilterParams
      * @param adminEventFilterParams - set of possible filtering parameters for admin
      * @return collection of {@link EventFullDto} - full event dto
      */

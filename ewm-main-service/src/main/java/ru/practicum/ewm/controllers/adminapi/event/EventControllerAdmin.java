@@ -13,6 +13,11 @@ import ru.practicum.ewm.util.UrlUtil;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
+/**
+ * The controller processes requests from event's admin API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin")

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
 import ru.practicum.ewm.exceptions.EntityNotFoundException;
+import ru.practicum.ewm.exceptions.category.CategoryByIdNotFoundException;
 import ru.practicum.ewm.getters.ThrownGettable;
 import ru.practicum.ewm.models.entities.category.Category;
 import ru.practicum.ewm.repositories.category.CategoryRepository;
@@ -16,7 +17,7 @@ public class CategoryGetter implements ThrownGettable<Category, Long> {
     @Override
     public Category getOrThrow(Long categoryId) throws EntityNotFoundException {
         val category = categoryRepository.findById(categoryId);
-        if (category.isEmpty()) throw new EntityNotFoundException("Category", "id", categoryId);
+        if (category.isEmpty()) throw new CategoryByIdNotFoundException(categoryId);
         return category.get();
     }
 }

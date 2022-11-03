@@ -11,7 +11,7 @@ import java.util.Collection;
  */
 public interface CompilationServicePublic {
     /**
-     * Gets collection of event compilation.
+     * Gets a collection of event compilation.
      *
      * @param pinned - filter {@code true} - pinned compilations, @{@code false} - unpinned compilations
      * @param from   - number of compilations that need to be skipped to form the returned collection of compilations
@@ -22,7 +22,7 @@ public interface CompilationServicePublic {
 
 
     /**
-     * Gets event compilation.
+     * Gets a event compilation.
      *
      * @param compilationId - compilation identifier
      * @return {@link CompilationDto} - direct compilation dto

@@ -7,6 +7,11 @@ import ru.practicum.ewm.service.publicapi.compilation.CompilationServicePublic;
 
 import java.util.Collection;
 
+/**
+ * The controller processes requests from compilation's public API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/compilations")

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import ru.practicum.ewm.controllers.publicapi.event.params.PublicEventFilterParams;
 import ru.practicum.ewm.controllers.publicapi.event.params.RequestMetaData;
 import ru.practicum.ewm.controllers.publicapi.event.params.SortType;
-import ru.practicum.ewm.event.model.QEvent;
 import ru.practicum.ewm.getters.event.EventGetter;
 import ru.practicum.ewm.mappers.event.EventMapper;
 import ru.practicum.ewm.models.dtos.event.EventFullDto;
@@ -17,6 +16,7 @@ import ru.practicum.ewm.models.dtos.event.EventShortDto;
 import ru.practicum.ewm.models.dtos.stats.EndpointHitDto;
 import ru.practicum.ewm.models.entities.event.Event;
 import ru.practicum.ewm.models.entities.event.EventState;
+import ru.practicum.ewm.models.entities.event.QEvent;
 import ru.practicum.ewm.repositories.event.EventRepository;
 
 import java.time.LocalDateTime;

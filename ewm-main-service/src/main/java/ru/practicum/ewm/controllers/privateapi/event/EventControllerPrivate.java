@@ -11,6 +11,11 @@ import ru.practicum.ewm.service.privateapi.event.EventServicePrivateImpl;
 import javax.validation.constraints.Positive;
 import java.util.Collection;
 
+/**
+ * The controller processes requests from event's private API of the application.
+ *
+ * @author Izenkyt
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/users/{userId}/events")
