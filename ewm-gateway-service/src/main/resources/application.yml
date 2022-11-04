@@ -1,0 +1,5 @@
+server:
+  port: 8080
+
+ewm-server:
+  url: ${EWM_MAIN_SERVER_URL}
