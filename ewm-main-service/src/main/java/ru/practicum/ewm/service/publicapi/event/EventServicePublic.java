@@ -17,10 +17,10 @@ public interface EventServicePublic {
     /**
      * Gets a collection of events by public filter params.
      *
-     * @see PublicEventFilterParams
      * @param publicEventFilterParams - set of possible filtering parameters for all
      * @param requestMetaData         - request metadata for collecting statistics like a user ip and its requested endpoint
      * @return collection of {@link EventShortDto} - short event dto
+     * @see PublicEventFilterParams
      */
     Collection<EventShortDto> getAllEventsByPublicParams(PublicEventFilterParams publicEventFilterParams,
                                                          RequestMetaData requestMetaData);

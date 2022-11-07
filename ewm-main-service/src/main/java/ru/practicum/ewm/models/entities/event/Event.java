@@ -10,6 +10,8 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Where;
 import ru.practicum.ewm.models.entities.category.Category;
 import ru.practicum.ewm.models.entities.event.location.Location;
+import ru.practicum.ewm.models.entities.event.rating.Dislike;
+import ru.practicum.ewm.models.entities.event.rating.Like;
 import ru.practicum.ewm.models.entities.participation.ParticipationRequest;
 import ru.practicum.ewm.models.entities.user.User;
 
@@ -67,6 +69,14 @@ public final class Event {
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
+    @OneToMany
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinColumn(name = "event_id")
+    private Set<Like> likes = new HashSet<>();
+    @OneToMany
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinColumn(name = "event_id")
+    private Set<Dislike> dislikes = new HashSet<>();
     @Transient
     private int views;
 

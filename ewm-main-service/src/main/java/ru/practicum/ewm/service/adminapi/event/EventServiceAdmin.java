@@ -16,9 +16,9 @@ public interface EventServiceAdmin {
     /**
      * Gets a collection of events by admin filter params.
      *
-     * @see AdminEventFilterParams
      * @param adminEventFilterParams - set of possible filtering parameters for admin
      * @return collection of {@link EventFullDto} - full event dto
+     * @see AdminEventFilterParams
      */
     Collection<EventFullDto> getAllEventsByAdminParams(AdminEventFilterParams adminEventFilterParams);
 
