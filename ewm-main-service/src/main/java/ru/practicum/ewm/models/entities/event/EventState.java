@@ -1,11 +1,13 @@
 package ru.practicum.ewm.models.entities.event;
 
+import java.io.Serializable;
+
 /**
  * The entity representing a state of event. Only admins can change event states.
  *
  * @author Izenkyt
  */
-public enum EventState {
+public enum EventState implements Serializable {
     /**
      * Default state for newly created event.
      */

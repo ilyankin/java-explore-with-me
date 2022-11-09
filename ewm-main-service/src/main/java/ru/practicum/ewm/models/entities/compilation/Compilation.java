@@ -5,6 +5,7 @@ import lombok.*;
 import ru.practicum.ewm.models.entities.event.Event;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name = "compilations", uniqueConstraints = @UniqueConstraint(name = "uq_compilation_id", columnNames = "title"))
-public class Compilation {
+public final class Compilation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "compilation_id")

@@ -9,6 +9,7 @@ import ru.practicum.ewm.models.entities.event.Event;
 import ru.practicum.ewm.models.entities.user.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -24,7 +25,7 @@ import java.time.LocalDateTime;
 @Table(name = "participation_request",
         uniqueConstraints = @UniqueConstraint(name = "uq_participation_request_requester_id_and_event_id",
                 columnNames = {"requester_id", "event_id"}))
-public final class ParticipationRequest {
+public final class ParticipationRequest implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "request_id")

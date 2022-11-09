@@ -27,6 +27,8 @@ public abstract class EventMapper {
     protected StatsClient statsClient;
 
     @Mapping(target = "confirmedRequests", expression = "java(event.getConfirmedRequests().size())")
+    @Mapping(target = "likes", expression = "java(event.getLikes().size())")
+    @Mapping(target = "dislikes", expression = "java(event.getDislikes().size())")
     @Mapping(target = "views", expression = "java(statsClient.getEventViews(event.getId()))")
     public abstract EventFullDto toDto(Event event);
 
@@ -35,12 +37,16 @@ public abstract class EventMapper {
     @Mapping(source = "initiator.id", target = "initiator.id")
     @Mapping(source = "initiator.name", target = "initiator.name")
     @Mapping(target = "confirmedRequests", expression = "java(event.getConfirmedRequests().size())")
+    @Mapping(target = "likes", expression = "java(event.getLikes().size())")
+    @Mapping(target = "dislikes", expression = "java(event.getDislikes().size())")
     @Mapping(target = "views", expression = "java(statsClient.getEventViews(event.getId()))")
     public abstract EventShortDto toShortDto(Event event);
 
     public abstract Collection<EventShortDto> toShortDto(Collection<Event> events);
 
     @Mapping(target = "views", ignore = true)
+    @Mapping(target = "likes", ignore = true)
+    @Mapping(target = "dislikes", ignore = true)
     @Mapping(target = "state", ignore = true)
     @Mapping(target = "publishedOn", ignore = true)
     @Mapping(target = "initiator", ignore = true)
@@ -51,7 +57,10 @@ public abstract class EventMapper {
             expression = "java(categoryRepository.findById(eventUpdateDto.getCategoryId()).orElse(null))")
     public abstract Event update(@MappingTarget Event event, AdminUpdateEventRequest eventUpdateDto);
 
+
     @Mapping(target = "views", ignore = true)
+    @Mapping(target = "likes", ignore = true)
+    @Mapping(target = "dislikes", ignore = true)
     @Mapping(target = "state", ignore = true)
     @Mapping(target = "requestModeration", ignore = true)
     @Mapping(target = "publishedOn", ignore = true)
@@ -65,6 +74,8 @@ public abstract class EventMapper {
     public abstract Event update(@MappingTarget Event event, UpdateEventRequest eventUpdateDto);
 
     @Mapping(target = "views", ignore = true)
+    @Mapping(target = "likes", ignore = true)
+    @Mapping(target = "dislikes", ignore = true)
     @Mapping(target = "state", ignore = true)
     @Mapping(target = "publishedOn", ignore = true)
     @Mapping(target = "createdOn", ignore = true)

@@ -10,10 +10,13 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Where;
 import ru.practicum.ewm.models.entities.category.Category;
 import ru.practicum.ewm.models.entities.event.location.Location;
+import ru.practicum.ewm.models.entities.event.rating.Dislike;
+import ru.practicum.ewm.models.entities.event.rating.Like;
 import ru.practicum.ewm.models.entities.participation.ParticipationRequest;
 import ru.practicum.ewm.models.entities.user.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +32,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "events", uniqueConstraints = @UniqueConstraint(name = "uq_event_title", columnNames = "title"))
-public final class Event {
+public final class Event implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_id")
@@ -67,6 +70,14 @@ public final class Event {
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
+    @OneToMany
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinColumn(name = "event_id")
+    private Set<Like> likes = new HashSet<>();
+    @OneToMany
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinColumn(name = "event_id")
+    private Set<Dislike> dislikes = new HashSet<>();
     @Transient
     private int views;
 
