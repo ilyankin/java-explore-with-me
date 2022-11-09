@@ -44,8 +44,8 @@ public class EventClientPublic extends BaseClient {
         val parameters = new HashMap<String, Object>();
         parameters.put("text", URLEncoder.encode(text, StandardCharsets.UTF_8));
         parameters.put("paid", paid);
-        parameters.put("rangeStart", URLEncoder.encode(rangeStart, StandardCharsets.UTF_8));
-        parameters.put("rangeEnd", URLEncoder.encode(rangeEnd, StandardCharsets.UTF_8));
+        parameters.put("rangeStart", rangeStart == null ? "" : URLEncoder.encode(rangeStart, StandardCharsets.UTF_8));
+        parameters.put("rangeEnd", rangeEnd == null ? "" : URLEncoder.encode(rangeEnd, StandardCharsets.UTF_8));
         parameters.put("onlyAvailable", onlyAvailable);
         parameters.put("sort", sort);
         parameters.put("from", from);

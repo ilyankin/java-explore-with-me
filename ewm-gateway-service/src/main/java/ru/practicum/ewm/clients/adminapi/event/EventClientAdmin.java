@@ -34,8 +34,8 @@ public class EventClientAdmin extends BaseClient {
                                                String rangeStart, String rangeEnd,
                                                Integer from, Integer size) {
         final Map<String, Object> parameters = Map.of(
-                "rangeStart", URLEncoder.encode(rangeStart, StandardCharsets.UTF_8),
-                "rangeEnd", URLEncoder.encode(rangeEnd, StandardCharsets.UTF_8),
+                "rangeStart", rangeStart == null ? "" : URLEncoder.encode(rangeStart, StandardCharsets.UTF_8),
+                "rangeEnd", rangeEnd == null ? "" : URLEncoder.encode(rangeEnd, StandardCharsets.UTF_8),
                 "from", from,
                 "size", size);
         return get(String.format("?%s&%s&%s&rangeStart={rangeStart}&rangeEnd={rangeEnd}&from={from}&size={size}",
