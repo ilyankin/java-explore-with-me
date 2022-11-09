@@ -6,6 +6,7 @@ import ru.practicum.ewm.models.entities.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * The entity representing an event dislike.
@@ -15,13 +16,16 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "dislikes")
 public final class Dislike implements Serializable {
+    @NonNull
     @EmbeddedId
     private PK dislikeId;
+    @Column(name = "created_on")
+    private LocalDateTime createdOn = LocalDateTime.now();
 
     @Embeddable
     @Getter

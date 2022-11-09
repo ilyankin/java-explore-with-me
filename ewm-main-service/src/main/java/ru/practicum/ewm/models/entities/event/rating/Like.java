@@ -7,6 +7,7 @@ import ru.practicum.ewm.models.entities.user.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * The entity representing an event like.
@@ -16,13 +17,16 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "likes")
 public final class Like implements Serializable {
+    @NonNull
     @EmbeddedId
     private Like.PK likeId;
+    @Column(name = "created_on")
+    private LocalDateTime createdOn = LocalDateTime.now();
 
     @Embeddable
     @Getter
