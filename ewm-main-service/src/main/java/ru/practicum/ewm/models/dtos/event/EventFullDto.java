@@ -33,7 +33,5 @@ public class EventFullDto {
     boolean requestModeration;
     int participantLimit;
     long confirmedRequests;
-    long likes;
-    long dislikes;
     long views;
 }

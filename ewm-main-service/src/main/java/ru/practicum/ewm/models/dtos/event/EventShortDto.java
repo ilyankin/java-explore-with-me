@@ -22,7 +22,5 @@ public class EventShortDto {
     UserShortDto initiator;
     boolean paid;
     long confirmedRequests;
-    long likes;
-    long dislikes;
     long views;
 }

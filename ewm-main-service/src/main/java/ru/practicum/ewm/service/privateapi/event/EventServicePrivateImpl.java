@@ -45,11 +45,6 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
     private final LocationMapper locationMapper;
     private final ParticipationRequestMapper prMapper;
 
-    private static void verifyInitiator(long userId, Event event) {
-        if (userId != event.getInitiator().getId())
-            throw new EventNotOnlyByInitiatorException(userId, event.getId());
-    }
-
     @Override
     public Collection<EventFullDto> getAllEvents(long userId, int from, int size) {
         val page = PageRequest.of(from / size, size, Sort.by("eventDate").descending());
@@ -161,5 +156,10 @@ public class EventServicePrivateImpl implements EventServicePrivate, Participati
         request.setStatus(PRStatus.REJECTED);
 
         return prMapper.toDto(prRepository.save(request));
+    }
+
+    private static void verifyInitiator(long userId, Event event) {
+        if (userId != event.getInitiator().getId())
+            throw new EventNotOnlyByInitiatorException(userId, event.getId());
     }
 }

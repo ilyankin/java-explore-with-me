@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.practicum.ewm.controllers.adminapi.event.params.AdminEventFilterParams;
 import ru.practicum.ewm.exceptions.event.EventDateAfterPublicationDateException;
 import ru.practicum.ewm.exceptions.event.EventInvalidStateException;
-import ru.practicum.ewm.exceptions.event.EventRejectPublishedEventException;
+import ru.practicum.ewm.exceptions.event.EventTryRejectPublishedEventException;
 import ru.practicum.ewm.getters.event.EventGetter;
 import ru.practicum.ewm.mappers.event.EventMapper;
 import ru.practicum.ewm.models.dtos.event.AdminUpdateEventRequest;
@@ -90,7 +90,7 @@ public class EventServiceAdminImpl implements EventServiceAdmin {
         val event = eventGetter.getOrThrow(eventId);
 
         if (event.getState().isPublished())
-            throw new EventRejectPublishedEventException();
+            throw new EventTryRejectPublishedEventException();
 
         event.setState(EventState.CANCELED);
         return eventMapper.toDto(eventRepository.save(event));
