@@ -3,6 +3,7 @@ package ru.practicum.ewm.clients.privateapi.event.rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
@@ -23,13 +24,13 @@ public class EventRatingClientPrivate extends BaseClient {
         );
     }
 
-    public void like(Long userId, Long eventId) {
+    public ResponseEntity<Object> like(Long userId, Long eventId) {
         final Map<String, Object> parameters = Map.of("eventId", eventId);
-        patch("/" + userId + "/like?eventId={eventId}", parameters);
+        return patch("/" + userId + "/like?eventId={eventId}", parameters);
     }
 
-    public void dislike(Long userId, Long eventId) {
+    public ResponseEntity<Object> dislike(Long userId, Long eventId) {
         final Map<String, Object> parameters = Map.of("eventId", eventId);
-        patch("/" + userId + "/dislike?eventId={eventId}", parameters);
+        return patch("/" + userId + "/dislike?eventId={eventId}", parameters);
     }
 }

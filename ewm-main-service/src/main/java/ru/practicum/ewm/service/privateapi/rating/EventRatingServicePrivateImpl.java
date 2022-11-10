@@ -30,6 +30,7 @@ public class EventRatingServicePrivateImpl implements EventRatingServicePrivate 
     public void likeEvent(long userId, long eventId) {
         val event = eventGetter.getOrThrow(eventId);
         val liker = userGetter.getOrThrow(userId);
+        validate(liker, event);
 
         val maybeLike = likeRepository.findById(new Like.PK(event, liker));
         val maybeDislike = dislikeRepository.findById(new Dislike.PK(event, liker));
