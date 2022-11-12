@@ -26,11 +26,11 @@ import java.util.Set;
  *
  * @author Izenkyt
  */
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "events", uniqueConstraints = @UniqueConstraint(name = "uq_event_title", columnNames = "title"))
 public final class Event implements Serializable {
     @Id

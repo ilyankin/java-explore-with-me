@@ -13,12 +13,12 @@ import java.util.Collection;
  *
  * @author Izenkyt
  */
+@Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "compilations", uniqueConstraints = @UniqueConstraint(name = "uq_compilation_id", columnNames = "title"))
 public final class Compilation implements Serializable {
     @Id

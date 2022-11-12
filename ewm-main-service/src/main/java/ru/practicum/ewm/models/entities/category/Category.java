@@ -14,11 +14,11 @@ import java.util.Objects;
  *
  * @author Izenkyt
  */
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "categories",
         uniqueConstraints = @UniqueConstraint(name = "uq_category_name", columnNames = "name"))
 public final class Category implements Serializable {
@@ -26,7 +26,6 @@ public final class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private long id;
-
     @Column(length = 32, nullable = false)
     private String name;
 

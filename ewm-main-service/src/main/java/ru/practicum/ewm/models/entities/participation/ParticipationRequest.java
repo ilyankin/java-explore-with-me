@@ -17,11 +17,11 @@ import java.time.LocalDateTime;
  *
  * @author Izenkyt
  */
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "participation_request",
         uniqueConstraints = @UniqueConstraint(name = "uq_participation_request_requester_id_and_event_id",
                 columnNames = {"requester_id", "event_id"}))

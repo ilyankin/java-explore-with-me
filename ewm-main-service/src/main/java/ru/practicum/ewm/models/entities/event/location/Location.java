@@ -14,11 +14,11 @@ import java.util.Objects;
  *
  * @author Izenkyt
  */
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "locations")
 public final class Location implements Serializable {
     @Id

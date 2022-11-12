@@ -14,13 +14,13 @@ import java.time.LocalDateTime;
  *
  * @author Izenkyt
  */
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 @EqualsAndHashCode
-@Entity
 @Table(name = "likes")
+@RequiredArgsConstructor
 public final class Like implements Serializable {
     @NonNull
     @EmbeddedId
@@ -28,6 +28,11 @@ public final class Like implements Serializable {
     @Column(name = "created_on")
     private LocalDateTime createdOn = LocalDateTime.now();
 
+    /**
+     * The entity representing a composite primary key of event like.
+     *
+     * @author Izenkyt
+     */
     @Embeddable
     @Getter
     @Setter

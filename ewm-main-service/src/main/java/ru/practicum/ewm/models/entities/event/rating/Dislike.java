@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
  *
  * @author Izenkyt
  */
+@Entity
 @Getter
 @Setter
+@EqualsAndHashCode
 @NoArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode
-@Entity
 @Table(name = "dislikes")
 public final class Dislike implements Serializable {
     @NonNull
@@ -27,6 +27,12 @@ public final class Dislike implements Serializable {
     @Column(name = "created_on")
     private LocalDateTime createdOn = LocalDateTime.now();
 
+
+    /**
+     * The entity representing a composite primary key of event dislike.
+     *
+     * @author Izenkyt
+     */
     @Embeddable
     @Getter
     @Setter
