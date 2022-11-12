@@ -30,7 +30,7 @@ public class UserClient extends BaseClient {
     public ResponseEntity<Object> getUsers(Set<Long> ids, Integer from, Integer size) {
         final Map<String, Object> parameters = Map.of("from", from, "size", size);
         return get("?" + UrlUtil.toArrayQueryParam(ids, "ids", id -> id > 0)
-                + "&from={from}&size={size}", parameters, null);
+                + "from={from}&size={size}", parameters, null);
     }
 
     public ResponseEntity<Object> createUser(NewUserRequest userRequest) {

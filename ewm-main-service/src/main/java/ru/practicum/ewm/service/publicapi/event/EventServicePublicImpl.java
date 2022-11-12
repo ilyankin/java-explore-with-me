@@ -20,8 +20,7 @@ import ru.practicum.ewm.models.entities.event.QEvent;
 import ru.practicum.ewm.repositories.event.EventRepository;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -71,8 +70,25 @@ public class EventServicePublicImpl implements EventServicePublic {
         }
 
         val size = publicEventFilterParams.getSize();
-        val page = PageRequest.of(publicEventFilterParams.getFrom() / size, size, toSort(publicEventFilterParams.getSortType()));
-        val events = eventRepository.findAll(conditions.getValue(), page).getContent();
+        val sortType = publicEventFilterParams.getSortType();
+
+        var page = PageRequest.of(publicEventFilterParams.getFrom() / size, size);
+        if (SortType.EVENT_DATE.equals(sortType) || SortType.VIEWS.equals(sortType)) {
+            page = PageRequest.of(publicEventFilterParams.getFrom() / size, size, toSort(sortType));
+        }
+
+        var events = eventRepository.findAll(conditions.getValue(), page).getContent();
+
+        if (SortType.LIKES.equals(sortType)) {
+            events = new ArrayList<>(events);
+            events.sort(Collections.reverseOrder(Comparator.comparing(event -> event.getLikes().size())));
+        }
+
+        if (SortType.DISLIKES.equals(sortType)) {
+            events = new ArrayList<>(events);
+            events.sort(Collections.reverseOrder(Comparator.comparing(event -> event.getDislikes().size())));
+        }
+
         for (Event event : events) {
             sendStatistics(new RequestMetaData(
                     requestMetaData.getRemoteAddress(), requestMetaData.getRequestURI() + "/" + event.getId()));

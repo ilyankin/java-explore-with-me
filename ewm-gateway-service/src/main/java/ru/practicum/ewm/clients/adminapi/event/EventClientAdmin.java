@@ -38,7 +38,7 @@ public class EventClientAdmin extends BaseClient {
                 "rangeEnd", rangeEnd == null ? "" : URLEncoder.encode(rangeEnd, StandardCharsets.UTF_8),
                 "from", from,
                 "size", size);
-        return get(String.format("?%s&%s&%s&rangeStart={rangeStart}&rangeEnd={rangeEnd}&from={from}&size={size}",
+        return get(String.format("?%s%s%srangeStart={rangeStart}&rangeEnd={rangeEnd}&from={from}&size={size}",
                 UrlUtil.toArrayQueryParam(users, "users", id -> id > 0),
                 UrlUtil.toArrayQueryParam(states, "states", EventState::isIn),
                 UrlUtil.toArrayQueryParam(categories, "categories", id -> id > 0)

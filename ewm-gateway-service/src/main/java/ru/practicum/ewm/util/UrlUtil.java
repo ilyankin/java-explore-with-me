@@ -24,6 +24,6 @@ public final class UrlUtil {
 
         if (result.length() == 0) return "";
 
-        return result.deleteCharAt(result.length() - 1).toString();
+        return result.toString();
     }
 }
