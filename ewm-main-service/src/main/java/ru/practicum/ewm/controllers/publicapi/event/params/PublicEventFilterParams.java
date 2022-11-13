@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 /**
  * This class contains a list of filtering parameters for that are used when searching for event using publish API.
  *
- * @see ru.practicum.ewm.models.entities.event.Event
  * @author Izenkyt
+ * @see ru.practicum.ewm.models.entities.event.Event
  */
 @Value
 public class PublicEventFilterParams {

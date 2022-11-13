@@ -17,9 +17,10 @@ public final class UrlUtil {
     public static List<LocalDateTime> decodeLocalDateTime(DateTimeFormatter formatter,
                                                           Charset charset,
                                                           String... encodeTimes) {
+
         val localDateTimes = new ArrayList<LocalDateTime>();
         for (val encodeTime : encodeTimes) {
-            if (encodeTime == null) {
+            if (encodeTime == null || encodeTime.isBlank()) {
                 localDateTimes.add(null);
                 continue;
             }

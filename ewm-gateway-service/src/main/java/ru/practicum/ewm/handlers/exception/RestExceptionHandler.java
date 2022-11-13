@@ -12,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -44,6 +45,16 @@ public class RestExceptionHandler {
                 .message(e.getMessage())
                 .reason("Method not allowed.")
                 .status(HttpStatus.METHOD_NOT_ALLOWED.name())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ApiError handleMissingServletRequestParameterException(final Exception e) {
+        return ApiError.builder()
+                .message(e.getMessage())
+                .reason("Missing request parameter.")
+                .status(HttpStatus.BAD_REQUEST.name())
                 .build();
     }
 

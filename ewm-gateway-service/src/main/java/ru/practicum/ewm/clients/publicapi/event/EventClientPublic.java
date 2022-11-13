@@ -44,8 +44,8 @@ public class EventClientPublic extends BaseClient {
         val parameters = new HashMap<String, Object>();
         parameters.put("text", URLEncoder.encode(text, StandardCharsets.UTF_8));
         parameters.put("paid", paid);
-        parameters.put("rangeStart", URLEncoder.encode(rangeStart, StandardCharsets.UTF_8));
-        parameters.put("rangeEnd", URLEncoder.encode(rangeEnd, StandardCharsets.UTF_8));
+        parameters.put("rangeStart", rangeStart == null ? "" : URLEncoder.encode(rangeStart, StandardCharsets.UTF_8));
+        parameters.put("rangeEnd", rangeEnd == null ? "" : URLEncoder.encode(rangeEnd, StandardCharsets.UTF_8));
         parameters.put("onlyAvailable", onlyAvailable);
         parameters.put("sort", sort);
         parameters.put("from", from);
@@ -53,8 +53,8 @@ public class EventClientPublic extends BaseClient {
         val headers = new HashMap<String, String>();
         headers.put("X-Request-URI", request.getRequestURI());
         headers.put("X-Remote-Address", request.getRemoteAddr());
-        return get("?" + UrlUtil.toArrayQueryParam(categories, "categories", id -> id > 0) +
-                "&text={text}&paid={paid}&rangeStart={rangeStart}&rangeEnd={rangeEnd}&onlyAvailable={onlyAvailable}" +
+        return get("?text={text}&" + UrlUtil.toArrayQueryParam(categories, "categories", id -> id > 0) +
+                "paid={paid}&rangeStart={rangeStart}&rangeEnd={rangeEnd}&onlyAvailable={onlyAvailable}" +
                 "&sort={sort}&from={from}&size={size}", parameters, headers);
     }
 }

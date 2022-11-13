@@ -61,11 +61,11 @@ public class RestExceptionHandler {
     @ExceptionHandler(Throwable.class)
     public ApiError handleUnexpectedException(Throwable e) {
         return ApiError.builder()
-                .message(e.getLocalizedMessage())
-                .reason("Error occurred.")
-                .status(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR))
-                .timestamp(LocalDateTime.now())
-                .build();
+                       .message(e.getLocalizedMessage())
+                       .reason("Error occurred.")
+                       .status(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR))
+                       .timestamp(LocalDateTime.now())
+                       .build();
     }
 
     @Value

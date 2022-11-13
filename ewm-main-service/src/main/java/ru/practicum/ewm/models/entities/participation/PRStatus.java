@@ -1,11 +1,13 @@
 package ru.practicum.ewm.models.entities.participation;
 
+import java.io.Serializable;
+
 /**
  * The entity representing a status of participation.
  *
  * @author Izenkyt
  */
-public enum PRStatus {
+public enum PRStatus implements Serializable {
     /**
      * Default status for newly created participation requests.
      */

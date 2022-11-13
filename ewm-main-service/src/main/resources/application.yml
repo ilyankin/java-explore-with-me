@@ -33,6 +33,7 @@ logging:
       hibernate:
         type: TRACE
       springframework:
+        web: DEBUG
         orm:
           jpa: DEBUG
           jpa.JpaTransactionManager: DEBUG

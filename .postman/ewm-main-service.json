@@ -12608,7 +12608,8 @@
       "key": "eid",
       "value": 1,
       "type": "number"
-    },{
+    },
+    {
       "info": {
         "_postman_id": "9fc27b0f-1a89-4a43-ba32-eae21299ce16",
         "name": "Test Explore With Me - Main service",

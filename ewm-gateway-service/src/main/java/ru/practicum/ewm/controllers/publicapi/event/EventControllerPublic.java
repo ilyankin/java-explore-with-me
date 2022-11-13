@@ -47,5 +47,7 @@ public class EventControllerPublic {
     private enum SortType {
         EVENT_DATE,
         VIEWS,
+        LIKES,
+        DISLIKES
     }
 }
